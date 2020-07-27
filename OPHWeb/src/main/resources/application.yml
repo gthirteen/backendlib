@@ -5,15 +5,18 @@ server:
 spring:
   datasource:
     username: root
-    password: 1234
-    url: jdbc:mysql://localhost:3306/neusoft
+    #password: 1234
+    password: CJ5LhnSo
+    #url: jdbc:mysql://localhost:3306/neusoft
+    url: jdbc:mysql://cdb-jm01mzra.cd.tencentcdb.com:10044/gthirteen
     driver-class-name: com.mysql.cj.jdbc.Driver
  
 mybatis:
   mapper-locations: classpath:mapping/**/*.xml
-  type-aliases-package: com.neusoft.oa.hr.model
+  type-aliases-package: com.thirteen.oph.hr.model, com.thirteen.oph.pm.model
  
 #showSql
 logging:
   level:
-    com.neusoft.oa.hr.mapper: debug
+    com.thirteen.oph.hr.mapper: debug
+    com.thirteen.oph.pm.mapper: debug
