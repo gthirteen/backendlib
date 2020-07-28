@@ -22,7 +22,25 @@ public class RoomController {
         rs.add(rm);
         Result<String> res = new Result<String>();
         res.setStatus("OK");
-        res.setMessage("blabla");
+        res.setMessage("A new record added.");
+        return res;
+    }
+    
+    @PostMapping(value="/modify")
+    public Result<String> modify(@RequestBody RoomModel rm) throws Exception {
+        rs.modify(rm);
+        Result<String> res = new Result<String>();
+        res.setStatus("OK");
+        res.setMessage("A record modified");
+        return res;
+    }
+    
+    @PostMapping(value="/delete")
+    public Result<String> delete(@RequestBody RoomModel rm) throws Exception {
+        rs.delete(rm);
+        Result<String> res = new Result<String>();
+        res.setStatus("OK");
+        res.setMessage("A record removed");
         return res;
     }
     
