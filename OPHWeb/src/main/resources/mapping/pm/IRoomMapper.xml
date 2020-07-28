@@ -8,7 +8,7 @@
     <id property="id" column="id"/>
     <result property="layout" column="layout"/>
     <collection property="members" ofType="ElderModel" columnPrefix="elder_"
-      resultMap="com.thirteen.oph.hr.mapper.IElderMapper"/>
+      resultMap="com.thirteen.oph.hr.mapper.IElderMapper.ElderResultMap"/>
   </resultMap>
 
   <insert id="insert" parameterType="Room">

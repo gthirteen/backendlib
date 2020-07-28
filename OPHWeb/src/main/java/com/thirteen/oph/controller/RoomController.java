@@ -1,9 +1,12 @@
 package com.thirteen.oph.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.thirteen.oph.pm.model.RoomModel;
@@ -11,6 +14,7 @@ import com.thirteen.oph.pm.service.IRoomService;
 import com.thirteen.oph.restresult.Result;
 
 @RestController
+@CrossOrigin(origins = {"*", "null"})
 @RequestMapping(value="/room")
 public class RoomController {
 
@@ -41,6 +45,24 @@ public class RoomController {
         Result<String> res = new Result<String>();
         res.setStatus("OK");
         res.setMessage("A record removed");
+        return res;
+    }
+    
+    @GetMapping(value="/list/all")
+    public Result<RoomModel> getListAll() throws Exception {
+        Result<RoomModel> res = new Result<RoomModel>();
+        res.setList(rs.getListAll());
+        res.setStatus("OK");
+        res.setMessage("Get list");
+        return res;
+    }
+    
+    @GetMapping(value="/getbyid")
+    public Result<RoomModel> getById(@RequestParam(required=true, value="id") String id) throws Exception {
+        Result<RoomModel> res = new Result<RoomModel>();
+        res.setResult(rs.getById(id));
+        res.setStatus("OK");
+        res.setMessage("Get By ID");
         return res;
     }
     
