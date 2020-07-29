@@ -13,6 +13,9 @@ public class Result<T> {
     private double doubleResult = 0.0;
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date dateResulte = null;
+    // page and count info
+    private int count = -1;
+    private int pageCount = -1;
     
     public T getResult() {
         return result;
@@ -67,6 +70,18 @@ public class Result<T> {
     }
     public void setMessage(String message) {
         this.message = message;
+    }
+    public int getCount() {
+        return count;
+    }
+    public void setCount(int count) {
+        this.count = count;
+    }
+    public int getPageCount() {
+        return pageCount;
+    }
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
     }
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date timeResult = null;

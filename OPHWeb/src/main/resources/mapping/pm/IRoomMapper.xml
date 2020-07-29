@@ -34,7 +34,7 @@
   
   <!-- ===== -->
   <select id="selectAllWithPage" resultMap="RoomResultMap">
-    select * from oph_room limit #{start}, #{row}
+    select * from oph_room limit #{start}, #{rows}
   </select>
  
   <select id="selectCountAll" resultType="int">

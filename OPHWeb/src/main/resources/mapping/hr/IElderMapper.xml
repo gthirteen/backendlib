@@ -47,7 +47,7 @@
     select a.*, b.layout as room_layout
     from oph_elder a
       left outer join oph_room b on a.room_id=b.id
-    limit #{start}, #{row}
+    limit #{start}, #{rows}
   </select>
  
   <select id="selectCountAll" resultType="int">

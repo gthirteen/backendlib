@@ -57,6 +57,18 @@ public class ElderController {
         return res;
     }
     
+    @GetMapping(value="/list/all/page")
+    public Result<ElderModel> getAllWithPage(@RequestParam(required=true) int rows,
+            @RequestParam(required=true) int page) throws Exception {
+        Result<ElderModel> res = new Result<ElderModel>();
+        res.setList(es.getAllWithPage(rows, page));
+        res.setCount(es.getCountAll());
+        res.setPageCount(es.getPageCountAll(rows));
+        res.setStatus("OK");
+        res.setMessage("Get list");
+        return res;
+    }
+    
     @GetMapping(value="/getbyid")
     public Result<ElderModel> getById(@RequestParam(required=true, value="id") String id) throws Exception {
         Result<ElderModel> res = new Result<ElderModel>();

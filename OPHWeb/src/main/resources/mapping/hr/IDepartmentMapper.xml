@@ -32,7 +32,7 @@
   
   <select id="selectAllWithPage" resultMap="DepartmentResultMap">
     select * from oph_department
-    limit #{start}, #{row}
+    limit #{start}, #{rows}
   </select>
  
   <select id="selectCountAll" resultType="int">

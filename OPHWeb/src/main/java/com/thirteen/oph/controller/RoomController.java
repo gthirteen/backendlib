@@ -57,8 +57,20 @@ public class RoomController {
         return res;
     }
     
+    @GetMapping(value="/list/all/page")
+    public Result<RoomModel> getListAllWithPage(@RequestParam(required=false) int rows, 
+            @RequestParam(required=true) int page) throws Exception {
+        Result<RoomModel> res = new Result<RoomModel>();
+        res.setList(rs.getAllWithPage(rows, page));
+        res.setCount(rs.getCountAll());
+        res.setPageCount(rs.getPageCountAll(rows));
+        res.setStatus("OK");
+        res.setMessage("Get list");
+        return res;
+    }
+    
     @GetMapping(value="/getbyid")
-    public Result<RoomModel> getById(@RequestParam(required=true, value="id") String id) throws Exception {
+    public Result<RoomModel> getById(@RequestParam(required=true) String id) throws Exception {
         Result<RoomModel> res = new Result<RoomModel>();
         res.setResult(rs.getById(id));
         res.setStatus("OK");

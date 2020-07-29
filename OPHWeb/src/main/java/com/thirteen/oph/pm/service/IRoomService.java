@@ -13,7 +13,7 @@ public interface IRoomService {
     public List<RoomModel> getListAll() throws Exception;
     public RoomModel getById(String id) throws Exception;
     
-    public List<RoomModel> selectAllWithPage(int rows, int page) throws Exception;
-    public int selectCountAll() throws Exception;
-    public int selectPageCountAll(int rows) throws Exception;
+    public List<RoomModel> getAllWithPage(int rows, int page) throws Exception;
+    public int getCountAll() throws Exception;
+    public int getPageCountAll(int rows) throws Exception;
 }

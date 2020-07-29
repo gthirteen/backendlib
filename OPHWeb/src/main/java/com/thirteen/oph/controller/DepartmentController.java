@@ -57,8 +57,20 @@ public class DepartmentController {
         return res;
     }
     
+    @GetMapping(value="/list/all/page")
+    public Result<DepartmentModel> getAllWithPage(@RequestParam(required=true) int rows,
+            @RequestParam(required=true) int page) throws Exception {
+        Result<DepartmentModel> res = new Result<DepartmentModel>();
+        res.setList(ds.getAllWithPage(rows, page));
+        res.setCount(ds.getCountAll());
+        res.setPageCount(ds.getPageCountAll(rows));
+        res.setStatus("OK");
+        res.setMessage("Get list");
+        return res;
+    }
+    
     @GetMapping(value="/getbyid")
-    public Result<DepartmentModel> getById(@RequestParam(required=true, value="id") String id) throws Exception {
+    public Result<DepartmentModel> getById(@RequestParam(required=true) String id) throws Exception {
         Result<DepartmentModel> res = new Result<DepartmentModel>();
         res.setResult(ds.getById(id));
         res.setStatus("OK");

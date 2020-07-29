@@ -43,18 +43,18 @@ public class RoomServiceImpl implements IRoomService {
     }
 
     @Override
-    public List<RoomModel> selectAllWithPage(int rows, int page) throws Exception {
+    public List<RoomModel> getAllWithPage(int rows, int page) throws Exception {
         return roomMapper.selectAllWithPage(rows*(page-1), rows);
     }
 
     @Override
-    public int selectCountAll() throws Exception {
+    public int getCountAll() throws Exception {
         return roomMapper.selectCountAll();
     }
     
     @Override
-    public int selectPageCountAll(int rows) throws Exception {
-        int cnt = this.selectCountAll();
+    public int getPageCountAll(int rows) throws Exception {
+        int cnt = this.getCountAll();
         if (cnt%rows!=0) {
             return cnt/rows + 1;
         } else {
