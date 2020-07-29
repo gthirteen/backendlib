@@ -14,11 +14,12 @@ public interface IElderService {
 
     public ElderModel getById(String id) throws Exception; 
 
-    // get all, hobbies and department included
+    // get all, room info included
     public List<ElderModel> getListAll() throws Exception;
     public List<ElderModel> getAllWithPage(int rows, int page) throws Exception;
     public int getCountAll() throws Exception;
     public int getPageCountAll(int rows) throws Exception;
     
-    public List<ElderModel> getAllByRoom(int id) throws Exception;
+    // Select all info by room, room info included
+    public List<ElderModel> getAllByRoom(String id) throws Exception;
 }

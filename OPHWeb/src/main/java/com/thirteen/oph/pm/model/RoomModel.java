@@ -11,8 +11,8 @@ import com.thirteen.oph.hr.model.ElderModel;
 public class RoomModel implements Serializable{
     private static final long serialVersionUID = 1L;
     
-    private String id;
-    private int layout;
+    private String id = null;
+    private int layout = -1;
     private List<ElderModel> members = null;
     
     public String getId() {

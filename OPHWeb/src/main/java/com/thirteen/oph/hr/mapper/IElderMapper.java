@@ -16,13 +16,13 @@ public interface IElderMapper {
     
     public ElderModel selectById(String id) throws Exception;
     
-    // Select all info, Department and hobbies included
+    // Select all info, room info included
     public List<ElderModel> selectAll() throws Exception;
     public int selectCountAll() throws Exception;
     public List<ElderModel> selectAllWithPage(@Param("start") int start, @Param("rows") int rows) throws Exception;
     
-    // Select all info by department
-    public List<ElderModel> selectAllByRoom(int id) throws Exception;
+    // Select all info by room, room info included
+    public List<ElderModel> selectAllByRoom(String id) throws Exception;
     
     // list: paged, department included, by condition
     // public List<ElderModel> selectListByConditionWithPageDepartment(

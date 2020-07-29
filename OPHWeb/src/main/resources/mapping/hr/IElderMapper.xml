@@ -12,7 +12,7 @@
     <result property="leaveday" column="leaveday"/>
     <result property="joinday" column="joinday"/>
     <association property="room" columnPrefix="room_"
-      resultMap="com.thirteen.oph.hr.mapper.IRoomMapper.RoomResultMap"/>
+      resultMap="com.thirteen.oph.pm.mapper.IRoomMapper.RoomResultMap"/>
   </resultMap>
 
   <insert id="insert" parameterType="Elder">
@@ -30,27 +30,30 @@
   </delete>
   
   <select id="selectById" resultMap="ElderResultMap">
-    select * from oph_elder where id=#{id}
+    select a.*, b.layout as room_layout
+    from oph_elder a
+      left outer join oph_room b on a.room_id=b.id
+    where a.id=#{id}
   </select>
   
   <!-- Select all info, Department and hobbies included  -->
   <select id="selectAll" resultMap="ElderResultMap">
     select a.*, b.layout as room_layout
     from oph_elder a
-      inner join oph_room b on a.room_id=b.id
+      left outer join oph_room b on a.room_id=b.id
   </select>
   
   <select id="selectAllWithPage" resultMap="ElderResultMap">
     select a.*, b.layout as room_layout
     from oph_elder a
-      inner join oph_room b on a.room_id=b.id
+      left outer join oph_room b on a.room_id=b.id
     limit #{start}, #{row}
   </select>
  
   <select id="selectCountAll" resultType="int">
     select count(*)
     from oph_elder a
-      inner join oph_room b on a.room_id=b.id
+      left outer join oph_room b on a.room_id=b.id
   </select>
   <!-- =============== -->
   

@@ -17,7 +17,7 @@ public class ElderModel implements Serializable {
     private Date birthday = null;
     private Date joinday = null;
     private Date leaveday = null;
-    private RoomModel room = null;
+    private RoomModel room = null; // room_id
     
     public String getId() {
         return id;
