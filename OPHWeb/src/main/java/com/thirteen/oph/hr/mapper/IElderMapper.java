@@ -10,9 +10,9 @@ import com.thirteen.oph.hr.model.ElderModel;
 @Mapper
 public interface IElderMapper {
 
-    public void insert(ElderModel dm) throws Exception;
-    public void update(ElderModel dm) throws Exception;
-    public void delete(ElderModel dm) throws Exception;
+    public void insert(ElderModel em) throws Exception;
+    public void update(ElderModel em) throws Exception;
+    public void delete(ElderModel em) throws Exception;
     
     public ElderModel selectById(String id) throws Exception;
     
