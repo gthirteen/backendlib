@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thirteen.oph.doctor.mapper.IBedMapper">
+
+  <resultMap id="BedResultMap" type="Bed">
+    <id property="id" column="ID"/>
+    <result property="name" column="BNAME"/>
+    <result property="docter" column="DOCTER"/>
+  </resultMap>
+
+  <insert id="insert" parameterType="Bed" keyProperty="id" keyColumn="ID" useGeneratedKeys="false"
+  >
+    insert into oph_bed (ID,BNAME,DOCTER) values (#{id}, #{name},#{docter})
+  </insert>
+  
+  <update id="update" >
+    update oph_bed set DOCTER=#{docter} BNAME=#{name} where ID=#{id}
+  </update>
+
+  <delete id="delete" >
+    delete from oph_bed where ID=#{id}
+  </delete>
+  
+  <select id="selectById" resultMap="BedResultMap">
+    select * from oph_bed where ID=#{id}
+  </select>
+  
+  <!-- Select all info, Doctor and hobbies included  -->
+  <select id="selectAll" resultMap="BedResultMap">
+    select * from oph_bed
+  </select>
+  
+  <select id="selectAllWithPage" resultMap="BedResultMap">
+    select * from oph_bed
+    limit #{start}, #{row}
+  </select>
+ 
+  <select id="selectCountAll" resultType="int">
+    select count(*) from oph_bed
+  </select>
+  <!-- =============== -->
+  
+</mapper>

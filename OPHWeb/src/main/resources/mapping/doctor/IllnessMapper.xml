@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thirteen.oph.doctor.mapper.IIllnessMapper">
+
+  <resultMap id="IllnessResultMap" type="Illness">
+    <id property="id" column="ID"/>
+    <result property="name" column="INAME"/>
+  </resultMap>
+
+  <insert id="insert" parameterType="Illness" keyProperty="id" keyColumn="ID" useGeneratedKeys="false"
+  >
+    insert into oph_illness (ID,INAME) values (#{id}, #{name})
+  </insert>
+  
+  <update id="update" >
+    update oph_illness set  INAME=#{name} where ID=#{id}
+  </update>
+
+  <delete id="delete" >
+    delete from oph_illness where ID=#{id}
+  </delete>
+  
+  <select id="selectById" resultMap="IllnessResultMap">
+    select * from oph_illness where ID=#{id}
+  </select>
+  
+  <!-- Select all info, Doctor and hobbies included  -->
+  <select id="selectAll" resultMap="IllnessResultMap">
+    select * from oph_illness
+  </select>
+  
+  <select id="selectAllWithPage" resultMap="IllnessResultMap">
+    select * from oph_illness
+    limit #{start}, #{row}
+  </select>
+ 
+  <select id="selectCountAll" resultType="int">
+    select count(*) from oph_illness
+  </select>
+  <!-- =============== -->
+  
+</mapper>
