@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thirteen.oph.doctor.mapper.ILikeMapper">
+
+  <resultMap id="LikeResultMap" type="Like">
+    <id property="id" column="ID"/>
+    <result property="name" column="NAME"/>
+    <result property="like" column="LIKE"/>
+  </resultMap>
+
+  <insert id="insert" parameterType="Like" keyProperty="id" keyColumn="ID" useGeneratedKeys="false"
+  >
+    insert into oph_like (ID,BNAME,LIKE) values (#{id}, #{name},#{like})
+  </insert>
+  
+  <update id="update" >
+    update oph_like set LIKE=#{like} BNAME=#{name} where ID=#{id}
+  </update>
+
+  <delete id="delete" >
+    delete from oph_like where ID=#{id}
+  </delete>
+  
+  <select id="selectById" resultMap="LikeResultMap">
+    select * from oph_like where ID=#{id}
+  </select>
+  
+  <!-- Select all info, Doctor and hobbies included  -->
+  <select id="selectAll" resultMap="LikeResultMap">
+    select * from oph_like
+  </select>
+  
+  <select id="selectAllWithPage" resultMap="LikeResultMap">
+    select * from oph_like
+    limit #{start}, #{row}
+  </select>
+ 
+  <select id="selectCountAll" resultType="int">
+    select count(*) from oph_like
+  </select>
+  <!-- =============== -->
+  
+</mapper>

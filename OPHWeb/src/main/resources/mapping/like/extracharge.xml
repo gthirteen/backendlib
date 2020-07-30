@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thirteen.oph.doctor.mapper.IExtraChargeMapper">
+
+  <resultMap id="ExtraChargesResultMap" type="Excharges">
+    <id property="id" column="ID"/>
+    <result property="name" column="NAME"/>
+  </resultMap>
+
+  <insert id="insert" parameterType="extrachanges" keyProperty="id" keyColumn="ID" useGeneratedKeys="false"
+  >
+    insert into oph_extrachanges (id,name,extrachanges) values (#{id}, #{name},#{extrachanges})
+  </insert>
+  
+  <update id="update" >
+    update oph_extracharges set EXTRACHARGES=#{extracharges} BNAME=#{name} where ID=#{id}
+  </update>
+
+  <delete id="delete" >
+    delete from oph_extracharges where ID=#{id}
+  </delete>
+  
+  <select id="selectById" resultMap="ExtraChargesResultMap">
+    select * from oph_extracharges where ID=#{id}
+  </select>
+  
+  <!-- Select all info, likes and ids included  -->
+  <select id="selectAll" resultMap="ExtraChargesResultMap">
+    select * from oph_extracharges
+  </select>
+  
+  <select id="selectAllWithPage" resultMap="ExtraChargesResultMap">
+    select * from oph_extracharges
+    limit #{start}, #{row}
+  </select>
+ 
+  <select id="selectCountAll" resultType="int">
+    select count(*) from oph_
+  </select>
+  <!-- =============== -->
+  
+</mapper>

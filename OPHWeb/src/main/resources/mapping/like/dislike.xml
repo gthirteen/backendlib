@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thirteen.oph.doctor.mapper.IDislikeMapper">
+
+  <resultMap id="DislikeResultMap" type="Dislike">
+    <id property="id" column="ID"/>
+    <result property="name" column="NAME"/>
+    <result property="dislike" column="DISLIKE"/>
+  </resultMap>
+
+  <insert id="insert" parameterType="Dislike" keyProperty="id" keyColumn="ID" useGeneratedKeys="false"
+  >
+    insert into oph_dislike (ID,BNAME,DISLIKE) values (#{id}, #{name},#{dislike})
+  </insert>
+  
+  <update id="update" >
+    update oph_dislike set DISLIKE=#{dislike} BNAME=#{name} where ID=#{id}
+  </update>
+
+  <delete id="delete" >
+    delete from oph_dislike where ID=#{id}
+  </delete>
+  
+  <select id="selectById" resultMap="DislikeResultMap">
+    select * from oph_dislike where ID=#{id}
+  </select>
+  
+  <!-- Select all info, Dislikes and hobbies included  -->
+  <select id="selectAll" resultMap="DislikeResultMap">
+    select * from oph_dislike
+  </select>
+  
+  <select id="selectAllWithPage" resultMap="DislikeResultMap">
+    select * from oph_dislike
+    limit #{start}, #{row}
+  </select>
+ 
+  <select id="selectCountAll" resultType="int">
+    select count(*) from oph_dislike
+  </select>
+  <!-- =============== -->
+  
+</mapper>
