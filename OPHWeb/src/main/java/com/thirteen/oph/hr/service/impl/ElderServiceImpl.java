@@ -1,5 +1,6 @@
 package com.thirteen.oph.hr.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,10 +62,30 @@ public class ElderServiceImpl implements IElderService {
             return cnt/rows;
         }
     }
+    
+    @Override
+    public List<ElderModel> selectAllByCondition(int page,  int rows, Date startBirthday,  Date endBirthday,
+            Date startJoinDate,  String sex, String roomid, String nameKey) throws Exception {
+        return elderMapper.selectAllByCondition(rows*(page-1), rows, startBirthday, 
+                endBirthday, startJoinDate, sex, roomid, nameKey==null ? null : '%'+nameKey+'%');
+    };
+    
+    @Override
+    public int countAllByCondition(Date startBirthday,  Date endBirthday,
+            Date startJoinDate,  String sex, String roomid, String nameKey) throws Exception {
+        Integer r = elderMapper.countAllByCondition(startBirthday, endBirthday, 
+                startJoinDate, sex, roomid, nameKey==null ? null : "%"+nameKey+"%");
+        return r==null ? 0 : r;
+    };
 
     @Override
     public List<ElderModel> getAllByRoom(String id) throws Exception {
         return elderMapper.selectAllByRoom(id);
+    }
+
+    @Override
+    public void updatePhoto(ElderModel em) throws Exception {
+        elderMapper.updatePhoto(em);
     }
 
 }

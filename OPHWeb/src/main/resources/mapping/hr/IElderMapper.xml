@@ -11,18 +11,23 @@
     <result property="birthday" column="birthday"/>
     <result property="leaveday" column="leaveday"/>
     <result property="joinday" column="joinday"/>
+    <result property="photoPath" column="photo_path"/>
     <association property="room" columnPrefix="room_"
       resultMap="com.thirteen.oph.pm.mapper.IRoomMapper.RoomResultMap"/>
   </resultMap>
 
   <insert id="insert" parameterType="Elder">
-    insert into oph_elder values (#{id}, #{name}, #{sex}, #{birthday}, 
-    #{joinday}, #{leaveday}, #{room.id})
+    insert into oph_elder (id, name, sex, birthday, joinday, leaveday, room_id) values 
+    (#{id}, #{name}, #{sex}, #{birthday}, #{joinday}, #{leaveday}, #{room.id})
   </insert>
   
   <update id="update" parameterType="Elder">
     update oph_elder set name=#{name}, sex=#{sex}, birthday=#{birthday}, 
     joinday=#{joinday}, leaveday=#{leaveday}, room_id=#{room.id} where id=#{id}
+  </update>
+  
+  <update id="updatePhoto" parameterType="Elder">
+    update oph_elder set photo_path=#{photoPath} where id=#{id}
   </update>
 
   <delete id="delete" parameterType="Elder">
@@ -57,11 +62,65 @@
   </select>
   <!-- =============== -->
   
+  <!-- Dynamic SQL -->
+  <select id="selectAllByCondition" resultMap="ElderResultMap">
+    select  a.*, b.layout as room_layout
+      from oph_elder a
+      left outer join oph_room b on a.room_id=b.id
+    <where>
+      <if test="startBirthday!=null">
+        and a.BIRTHDAY &gt;= #{startBirthday}
+      </if>
+      <if test="endBirthday!=null">
+        and a.BIRTHDAY  &lt;= #{endBIRTHDAY}
+      </if>
+      <if test="startJoinDate!=null">
+        and a.JOINDATY &gt;= #{startJoinDate}
+      </if>
+      <if test="sex!=null">
+        and a.SEX=#{sex}
+      </if>
+      <if test="nameKey!=null">
+        and a.NAME like #{nameKey}
+      </if>
+      <if test="roomid!=null">
+        and a.room_id = ${roomid}
+      </if>
+    </where>
+    limit #{start}, #{rows}
+  </select>
+  
+  <select id="countAllByCondition" resultType="Integer">
+    select  count(*)
+      from oph_elder a
+      left outer join oph_room b on a.room_id=b.id
+    <where>
+      <if test="startBirthday!=null">
+        and a.BIRTHDAY &gt;= #{startBirthday}
+      </if>
+      <if test="endBirthday!=null">
+        and a.BIRTHDAY  &lt;= #{endBIRTHDAY}
+      </if>
+      <if test="startJoinDate!=null">
+        and a.JOINDATY &gt;= #{startJoinDate}
+      </if>
+      <if test="sex!=null">
+        and a.SEX=#{sex}
+      </if>
+      <if test="nameKey!=null">
+        and a.NAME like #{nameKey}
+      </if>
+      <if test="roomid!=null">
+        and a.room_id = ${roomid}
+      </if>
+    </where>
+  </select>
+  
   <select id="selectAllByRoom" resultMap="ElderResultMap">
     select a.*, b.layout as room_layout
     from oph_elder a
       inner join oph_room b
-    where a.room_id=${room.id}
+    where 
   </select>
   
 </mapper>

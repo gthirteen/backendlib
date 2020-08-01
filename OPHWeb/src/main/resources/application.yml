@@ -10,6 +10,10 @@ spring:
     #url: jdbc:mysql://localhost:3306/neusoft
     url: jdbc:mysql://cdb-jm01mzra.cd.tencentcdb.com:10044/gthirteen
     driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:      enabled: true
+  resources:
+    static-locations:    - file:/home/ddkk/git/
  
 mybatis:
   mapper-locations: classpath:mapping/**/*.xml

@@ -9,7 +9,7 @@ public interface IDepartmentService {
     public void add(DepartmentModel dm) throws Exception;
     public void modify(DepartmentModel dm) throws Exception;
     public void delete(DepartmentModel dm) throws Exception;
-
+    
     public DepartmentModel getById(String id) throws Exception; 
 
     // get all, hobbies and department included

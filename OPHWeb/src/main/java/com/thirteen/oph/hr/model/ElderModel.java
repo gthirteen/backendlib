@@ -17,6 +17,7 @@ public class ElderModel implements Serializable {
     private Date birthday = null;
     private Date joinday = null;
     private Date leaveday = null;
+    private String photoPath = null;
     private RoomModel room = null; // room_id
     
     public String getId() {
@@ -60,6 +61,12 @@ public class ElderModel implements Serializable {
     }
     public void setRoom(RoomModel room) {
         this.room = room;
+    }
+    public String getPhotoPath() {
+        return photoPath;
+    }
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
     }
     
 }

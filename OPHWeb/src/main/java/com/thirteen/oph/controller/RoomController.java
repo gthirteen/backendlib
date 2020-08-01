@@ -62,8 +62,9 @@ public class RoomController {
             @RequestParam(required=true) int page) throws Exception {
         Result<RoomModel> res = new Result<RoomModel>();
         res.setList(rs.getAllWithPage(rows, page));
-        res.setCount(rs.getCountAll());
-        res.setPageCount(rs.getPageCountAll(rows));
+        int cnt = rs.getCountAll();
+        res.setCount(cnt);
+        res.setPageCount(cnt%rows!=0 ? cnt/rows+1 : cnt/rows);
         res.setStatus("OK");
         res.setMessage("Get list");
         return res;

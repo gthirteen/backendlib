@@ -62,8 +62,9 @@ public class DepartmentController {
             @RequestParam(required=true) int page) throws Exception {
         Result<DepartmentModel> res = new Result<DepartmentModel>();
         res.setList(ds.getAllWithPage(rows, page));
-        res.setCount(ds.getCountAll());
-        res.setPageCount(ds.getPageCountAll(rows));
+        int cnt = ds.getCountAll();
+        res.setCount(cnt);
+        res.setPageCount(cnt%rows!=0 ? cnt/rows+1 : cnt/rows);
         res.setStatus("OK");
         res.setMessage("Get list");
         return res;
