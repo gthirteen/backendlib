@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thirteen.oph.doctor.mapper.IDoctorMapper">
+
+  <resultMap id="DoctorResultMap" type="Doctor">
+    <id property="id" column="ID"/>
+    <result property="name" column="DNAME"/>
+    <result property="department" column="DEPARTMENT"/>
+  </resultMap>
+
+  <insert id="insert" parameterType="Doctor" keyProperty="id" keyColumn="ID" useGeneratedKeys="false"
+  >
+    insert into oph_doctor (ID,DNAME,DEPARTMENT) values (#{id}, #{name},#{department})
+  </insert>
+  
+  <update id="update" >
+    update oph_doctor set DEPARTMENT=#{department} DNAME=#{name} where ID=#{id}
+  </update>
+
+  <delete id="delete" >
+    delete from oph_doctor where ID=#{id}
+  </delete>
+  
+  <select id="selectById" resultMap="DoctorResultMap">
+    select * from oph_doctor where ID=#{id}
+  </select>
+  
+  <!-- Select all info, Doctor and hobbies included  -->
+  <select id="selectAll" resultMap="DoctorResultMap">
+    select * from oph_doctor
+  </select>
+  
+  <select id="selectAllWithPage" resultMap="DoctorResultMap">
+    select * from oph_doctor
+    limit #{start}, #{row}
+  </select>
+ 
+  <select id="selectCountAll" resultType="int">
+    select count(*) from oph_doctor
+  </select>
+  <!-- =============== -->
+  
+</mapper>
